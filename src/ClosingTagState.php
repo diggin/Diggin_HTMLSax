@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Diggin\HTMLSax;
 
 /**
@@ -11,11 +10,9 @@ namespace Diggin\HTMLSax;
 class ClosingTagState
 {
     /**
-     * @param Diggin_HTMLSax_StateParser subclass
-     * @return Diggin_HTMLSax_StateInterface::STATE_START
      * @access protected
      */
-    function parse($context)
+    function parse(StateParser $context) : int
     {
         $tag = $context->scanUntilCharacters('/>');
         if ($tag != '') {

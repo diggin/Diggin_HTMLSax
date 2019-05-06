@@ -9,11 +9,10 @@ namespace Diggin\HTMLSax;
 class PiState
 {
     /**
-     * @param Diggin_HTMLSax_StateParser subclass
-     * @return Diggin_HTMLSax_StateInterface::STATE_START
+     * @return int - Diggin_HTMLSax_StateInterface::STATE_START
      * @access protected
      */
-    function parse($context)
+    function parse(StateParser $context) : int
     {
         $target = $context->scanUntilCharacters(" \n\r\t");
         $data = $context->scanUntilString('?>');

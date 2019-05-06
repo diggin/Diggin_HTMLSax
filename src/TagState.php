@@ -10,11 +10,10 @@ namespace Diggin\HTMLSax;
 class TagState
 {
     /**
-     * @param Diggin_HTMLSax_StateParser subclass
-     * @return constant the next state to move into
+     * @return int - constant the next state to move into
      * @access protected
      */
-    function parse($context)
+    function parse(StateParser $context) : int
     {
         switch ($context->ScanCharacter()) {
             case '/':

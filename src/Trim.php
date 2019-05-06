@@ -22,7 +22,6 @@ class Trim
      */
     var $orig_method;
     /**
-     * Constructs Diggin_HTMLSax_Trim
      * @param object handler object being decorated
      * @param string original handler method
      * @access protected
