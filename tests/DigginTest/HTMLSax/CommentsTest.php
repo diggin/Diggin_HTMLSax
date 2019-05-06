@@ -1,7 +1,9 @@
 <?php
 namespace DigginTest\HTMLSax;
 
-class CommentsTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class CommentsTest extends TestCase
 {
     use BasicSetupTrait;
 

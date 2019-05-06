@@ -1,7 +1,9 @@
 <?php
 namespace DigginTest\HTMLSax;
 
-class ContentTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ContentTest extends TestCase
 {
     use BasicSetupTrait;
 

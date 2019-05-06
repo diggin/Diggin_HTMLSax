@@ -2,8 +2,9 @@
 namespace DigginTest\HTMLSax;
 
 use Diggin\HTMLSax\HTMLSax;
+use PHPUnit\Framework\TestCase;
 
-class MethodArgumentTest extends \PHPUnit_Framework_TestCase
+class MethodArgumentTest extends TestCase
 {
     /**
      * @expectedException \InvalidArgumentException 

@@ -3,7 +3,9 @@
 namespace DigginTest\HTMLSax;
 
 
-class JaspTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class JaspTest extends TestCase
 {
     use BasicSetupTrait;
 

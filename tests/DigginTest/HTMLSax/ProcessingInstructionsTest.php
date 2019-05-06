@@ -2,7 +2,9 @@
 namespace DigginTest\HTMLSax;
 
 
-class ProcessingInstructionsTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ProcessingInstructionsTest extends TestCase
 {
     use BasicSetupTrait;
 
