@@ -8,10 +8,8 @@
 
 namespace Diggin\HTMLSax\Escape;
 
-
-
-
-class Stripper {
+class Stripper
+{
     /**
      * Original handler object
      * @var object
@@ -30,7 +28,8 @@ class Stripper {
      * @param string original handler method
      * @access protected
      */
-    function __construct($orig_obj, $orig_method) {
+    function __construct($orig_obj, $orig_method)
+    {
         $this->orig_obj = $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -40,22 +39,23 @@ class Stripper {
      * @param string element data
      * @access protected
      */
-    function strip($parser, $data) {
+    function strip($parser, $data)
+    {
         // Check for HTML comments first
-        if ( substr($data,0,2) == '--' ) {
-            $patterns = array(
+        if (substr($data, 0, 2) == '--') {
+            $patterns = [
                 '/^\-\-/',          // Opening comment: --
                 '/\-\-$/',          // Closing comment: --
-            );
-            $data = preg_replace($patterns,'',$data);
+            ];
+            $data = preg_replace($patterns, '', $data);
 
             // Check for Diggin CDATA sections (note: don't do both!)
-        } else if ( substr($data,0,1) == '[' ) {
-            $patterns = array(
+        } elseif (substr($data, 0, 1) == '[') {
+            $patterns = [
                 '/^\[.*CDATA.*\[/s', // Opening CDATA
                 '/\].*\]$/s',       // Closing CDATA
-            );
-            $data = preg_replace($patterns,'',$data);
+            ];
+            $data = preg_replace($patterns, '', $data);
         }
 
         $this->orig_obj->{$this->orig_method}($this, $data);

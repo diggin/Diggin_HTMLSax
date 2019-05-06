@@ -6,13 +6,15 @@ namespace Diggin\HTMLSax;
  * @package Diggin_HTMLSax
  * @access protected
  */
-class PiState {
+class PiState
+{
     /**
      * @param Diggin_HTMLSax_StateParser subclass
      * @return Diggin_HTMLSax_StateInterface::STATE_START
      * @access protected
      */
-    function parse($context) {
+    function parse($context)
+    {
         $target = $context->scanUntilCharacters(" \n\r\t");
         $data = $context->scanUntilString('?>');
         if ($data != '') {

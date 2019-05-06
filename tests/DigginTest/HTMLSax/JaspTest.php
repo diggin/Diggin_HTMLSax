@@ -2,17 +2,18 @@
 
 namespace DigginTest\HTMLSax;
 
-
 use PHPUnit\Framework\TestCase;
 
 class JaspTest extends TestCase
 {
     use BasicSetupTrait;
 
-    function testSimple() {
+    function testSimple()
+    {
         $this->listener->expects($this->once())->method(
-                'jaspHandler',
-                array('*', ' document.write("Hello World");'));
+            'jaspHandler',
+            ['*', ' document.write("Hello World");']
+        );
         // $this->listener->expectNever('piHandler');
         // $this->listener->expectNever('escapeHandler');
         // $this->listener->expectNever('dataHandler');
@@ -20,10 +21,12 @@ class JaspTest extends TestCase
         // $this->listener->expectNever('endHandler');
         $this->parser->parse('<' . '% document.write("Hello World");%>');
     }
-    function testNasty() {
+    function testNasty()
+    {
         $this->listener->expects($this->once())->method(
-                'jaspHandler',
-                array('*', ' <tag a="A"><?php ?></tag><!-- comment --> '));
+            'jaspHandler',
+            ['*', ' <tag a="A"><?php ?></tag><!-- comment --> ']
+        );
         // $this->listener->expectNever('piHandler');
         // $this->listener->expectNever('escapeHandler');
         // $this->listener->expectNever('dataHandler');
@@ -31,10 +34,12 @@ class JaspTest extends TestCase
         // $this->listener->expectNever('endHandler');
         $this->parser->parse('<' . '% <tag a="A"><?php ?></tag><!-- comment --> %>');
     }
-    function testInTag() {
+    function testInTag()
+    {
         $this->listener->expects($this->once())->method(
-                'jaspHandler',
-                array('*', ' document.write("Hello World");'));
+            'jaspHandler',
+            ['*', ' document.write("Hello World");']
+        );
         // $this->listener->expectNever('piHandler');
         // $this->listener->expectNever('escapeHandler');
         // $this->listener->expectNever('dataHandler');

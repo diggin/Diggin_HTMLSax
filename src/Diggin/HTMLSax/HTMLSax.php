@@ -3,7 +3,6 @@
 
 namespace Diggin\HTMLSax;
 
-
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 //
 // +----------------------------------------------------------------------+
@@ -43,7 +42,8 @@ namespace Diggin\HTMLSax;
  * @package Diggin_HTMLSax
  * @access public
  */
-class HTMLSax {
+class HTMLSax
+{
     /**
      * Instance of concrete subclass of Diggin_HTMLSax_StateParser
      * @var Diggin_HTMLSax_StateParser
@@ -67,7 +67,8 @@ class HTMLSax {
      * </pre>
      * @access public
      */
-    function __construct() {
+    function __construct()
+    {
         $this->state_parser = new StateParser($this);
 
         $nullhandler = new NullHandler();
@@ -86,8 +87,9 @@ class HTMLSax {
      * @access public
      * @return mixed
      */
-    function set_object($object) {
-        if ( is_object($object) ) {
+    function set_object($object)
+    {
+        if (is_object($object)) {
             $this->state_parser->handler_default = $object;
             return true;
         } else {
@@ -123,8 +125,9 @@ class HTMLSax {
      * @access public
      * @return boolean
      */
-    function set_option($name, $value=1) {
-        if ( array_key_exists($name,$this->state_parser->parser_options) ) {
+    function set_option($name, $value = 1)
+    {
+        if (array_key_exists($name, $this->state_parser->parser_options)) {
             $this->state_parser->parser_options[$name] = $value;
             return true;
         } else {
@@ -146,7 +149,8 @@ class HTMLSax {
      * @return void
      * @see set_object
      */
-    function set_data_handler($data_method) {
+    function set_data_handler($data_method)
+    {
         $this->state_parser->handler_object_data = $this->state_parser->handler_default;
         $this->state_parser->handler_method_data = $data_method;
     }
@@ -169,7 +173,8 @@ class HTMLSax {
      * @return void
      * @see set_object
      */
-    function set_element_handler($opening_method, $closing_method) {
+    function set_element_handler($opening_method, $closing_method)
+    {
         $this->state_parser->handler_object_element = $this->state_parser->handler_default;
         $this->state_parser->handler_method_opening = $opening_method;
         $this->state_parser->handler_method_closing = $closing_method;
@@ -188,7 +193,8 @@ class HTMLSax {
      * @return void
      * @see set_object
      */
-    function set_pi_handler($pi_method) {
+    function set_pi_handler($pi_method)
+    {
         $this->state_parser->handler_object_pi = $this->state_parser->handler_default;
         $this->state_parser->handler_method_pi = $pi_method;
     }
@@ -206,7 +212,8 @@ class HTMLSax {
      * @return void
      * @see set_object
      */
-    function set_escape_handler($escape_method) {
+    function set_escape_handler($escape_method)
+    {
         $this->state_parser->handler_object_escape = $this->state_parser->handler_default;
         $this->state_parser->handler_method_escape = $escape_method;
     }
@@ -223,7 +230,8 @@ class HTMLSax {
      * @return void
      * @see set_object
      */
-    function set_jasp_handler ($jasp_method) {
+    function set_jasp_handler($jasp_method)
+    {
         $this->state_parser->handler_object_jasp = $this->state_parser->handler_default;
         $this->state_parser->handler_method_jasp = $jasp_method;
     }
@@ -242,7 +250,8 @@ class HTMLSax {
      * @return int
      * @see get_length
      */
-    function get_current_position() {
+    function get_current_position()
+    {
         return $this->state_parser->position;
     }
 
@@ -251,7 +260,8 @@ class HTMLSax {
      * @access public
      * @return int
      */
-    function get_length() {
+    function get_length()
+    {
         return $this->state_parser->length;
     }
 
@@ -261,7 +271,8 @@ class HTMLSax {
      * @access public
      * @return void
      */
-    function parse($data) {
+    function parse($data)
+    {
         $this->state_parser->parse($data);
     }
 }

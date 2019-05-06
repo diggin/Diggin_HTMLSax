@@ -9,10 +9,8 @@
 
 namespace Diggin\HTMLSax\Entities;
 
-
-
-
-class Parsed {
+class Parsed
+{
     /**
      * Original handler object
      * @var object
@@ -31,7 +29,8 @@ class Parsed {
      * @param string original handler method
      * @access protected
      */
-    function __construct($orig_obj, $orig_method) {
+    function __construct($orig_obj, $orig_method)
+    {
         $this->orig_obj = $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -41,10 +40,11 @@ class Parsed {
      * @param string element data
      * @access protected
      */
-    function breakData($parser, $data) {
-        $data = preg_split('/(&.+?;)/',$data,-1,PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        foreach ( $data as $chunk ) {
-            $chunk = html_entity_decode($chunk,ENT_NOQUOTES);
+    function breakData($parser, $data)
+    {
+        $data = preg_split('/(&.+?;)/', $data, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        foreach ($data as $chunk) {
+            $chunk = html_entity_decode($chunk, ENT_NOQUOTES);
             $this->orig_obj->{$this->orig_method}($this, $chunk);
         }
     }

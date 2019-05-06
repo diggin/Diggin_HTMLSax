@@ -8,10 +8,8 @@
 
 namespace Diggin\HTMLSax;
 
-
-
-
-class Tab {
+class Tab
+{
     /**
      * Original handler object
      * @var object
@@ -30,7 +28,8 @@ class Tab {
      * @param string original handler method
      * @access protected
      */
-    function __construct($orig_obj, $orig_method) {
+    function __construct($orig_obj, $orig_method)
+    {
         $this->orig_obj = $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -40,9 +39,10 @@ class Tab {
      * @param string element data
      * @access protected
      */
-    function breakData($parser, $data) {
-        $data = explode("\t",$data);
-        foreach ( $data as $chunk ) {
+    function breakData($parser, $data)
+    {
+        $data = explode("\t", $data);
+        foreach ($data as $chunk) {
             $this->orig_obj->{$this->orig_method}($this, $chunk);
         }
     }

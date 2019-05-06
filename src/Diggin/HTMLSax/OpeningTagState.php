@@ -9,9 +9,8 @@ namespace Diggin\HTMLSax;
 
 use Diggin\HTMLSax\StateInterface;
 
-
-
-class OpeningTagState {
+class OpeningTagState
+{
     /**
      * Handles attributes
      * @param string attribute name
@@ -20,22 +19,23 @@ class OpeningTagState {
      * @access protected
      * @see Diggin_HTMLSax_AttributeStartState
      */
-    function parseAttributes($context) {
-        $Attributes = array();
+    function parseAttributes($context)
+    {
+        $Attributes = [];
 
         $context->ignoreWhitespace();
         $attributename = $context->scanUntilCharacters("=/> \n\r\t");
         while ($attributename != '') {
-            $attributevalue = NULL;
+            $attributevalue = null;
             $context->ignoreWhitespace();
             $char = $context->scanCharacter();
             if ($char == '=') {
                 $context->ignoreWhitespace();
                 $char = $context->ScanCharacter();
                 if ($char == '"') {
-                    $attributevalue= $context->scanUntilString('"');
+                    $attributevalue = $context->scanUntilString('"');
                     $context->IgnoreCharacter();
-                } else if ($char == "'") {
+                } elseif ($char == "'") {
                     $attributevalue = $context->scanUntilString("'");
                     $context->IgnoreCharacter();
                 } else {
@@ -43,8 +43,8 @@ class OpeningTagState {
                     $attributevalue =
                         $context->scanUntilCharacters("> \n\r\t");
                 }
-            } else if ($char !== NULL) {
-                $attributevalue = NULL;
+            } elseif ($char !== null) {
+                $attributevalue = null;
                 $context->unscanCharacter();
             }
             $Attributes[$attributename] = $attributevalue;
@@ -60,10 +60,11 @@ class OpeningTagState {
      * @return constant Diggin_HTMLSax_StateInterface::STATE_START
      * @access protected
      */
-    function parse($context) {
+    function parse($context)
+    {
         $tag = $context->scanUntilCharacters("/> \n\r\t");
         if ($tag != '') {
-            $this->attrs = array();
+            $this->attrs = [];
             $Attributes = $this->parseAttributes($context);
             $char = $context->scanCharacter();
             if ($char == '/') {
@@ -73,14 +74,14 @@ class OpeningTagState {
                 }
                 $context->handler_object_element->
                 {$context->handler_method_opening}($context->htmlsax, $tag,
-                    $Attributes, TRUE);
+                    $Attributes, true);
                 $context->handler_object_element->
                 {$context->handler_method_closing}($context->htmlsax, $tag,
-                    TRUE);
+                    true);
             } else {
                 $context->handler_object_element->
                 {$context->handler_method_opening}($context->htmlsax, $tag,
-                    $Attributes, FALSE);
+                    $Attributes, false);
             }
         }
         return StateInterface::STATE_START;

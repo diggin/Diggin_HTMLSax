@@ -14,7 +14,7 @@ trait BasicSetupTrait
 
         $this->parser = new HTMLSax;
         $this->parser->set_object($this->listener);
-        $this->parser->set_element_handler('startHandler','endHandler');
+        $this->parser->set_element_handler('startHandler', 'endHandler');
         $this->parser->set_data_handler('dataHandler');
         $this->parser->set_escape_handler('escapeHandler');
         $this->parser->set_pi_handler('piHandler');

@@ -7,14 +7,16 @@
 
 namespace Diggin\HTMLSax;
 
-class TagState {
+class TagState
+{
     /**
      * @param Diggin_HTMLSax_StateParser subclass
      * @return constant the next state to move into
      * @access protected
      */
-    function parse($context) {
-        switch($context->ScanCharacter()) {
+    function parse($context)
+    {
+        switch ($context->ScanCharacter()) {
             case '/':
                 return StateInterface::STATE_CLOSING_TAG;
                 break;

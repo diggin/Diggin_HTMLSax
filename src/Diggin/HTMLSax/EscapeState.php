@@ -5,20 +5,20 @@ namespace Diggin\HTMLSax;
 
 use Diggin\HTMLSax\StateInterface;
 
-
-
 /**
  * Deals with Diggin escapes handling comments and CDATA correctly
  * @package Diggin_HTMLSax
  * @access protected
  */
-class EscapeState {
+class EscapeState
+{
     /**
      * @param Diggin_HTMLSax_StateParser subclass
      * @return Diggin_HTMLSax_StateInterface::STATE_START
      * @access protected
      */
-    function parse($context) {
+    function parse($context)
+    {
         $char = $context->ScanCharacter();
         if ($char == '-') {
             $char = $context->ScanCharacter();
@@ -32,10 +32,10 @@ class EscapeState {
                 $context->unscanCharacter();
                 $text = $context->scanUntilString('>');
             }
-        } else if ( $char == '[') {
+        } elseif ($char == '[') {
             $context->unscanCharacter();
             $text = $context->scanUntilString(']>');
-            $text.= $context->scanCharacter();
+            $text .= $context->scanCharacter();
         } else {
             $context->unscanCharacter();
             $text = $context->scanUntilString('>');
