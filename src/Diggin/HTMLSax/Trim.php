@@ -7,10 +7,8 @@
 
 namespace Diggin\HTMLSax;
 
-
-
-
-class Trim {
+class Trim
+{
     /**
      * Original handler object
      * @var object
@@ -29,7 +27,8 @@ class Trim {
      * @param string original handler method
      * @access protected
      */
-    function __construct($orig_obj, $orig_method) {
+    function __construct($orig_obj, $orig_method)
+    {
         $this->orig_obj = $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -39,7 +38,8 @@ class Trim {
      * @param string element data
      * @access protected
      */
-    function trimData($parser, $data) {
+    function trimData($parser, $data)
+    {
         $data = trim($data);
         if ($data != '') {
             $this->orig_obj->{$this->orig_method}($parser, $data);

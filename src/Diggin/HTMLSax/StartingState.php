@@ -7,13 +7,15 @@
 
 namespace Diggin\HTMLSax;
 
-class StartingState  {
+class StartingState
+{
     /**
      * @param Diggin_HTMLSax_StateParser subclass
      * @return StateInterface::STATE_TAG
      * @access protected
      */
-    function parse($context) {
+    function parse($context)
+    {
         $data = $context->scanUntilString('<');
         if ($data != '') {
             $context->handler_object_data->

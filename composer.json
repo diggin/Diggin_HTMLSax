@@ -4,13 +4,14 @@
     "type": "library",
     "license": "LGPL-3.0",
     "keywords": [
-        "sax"
+        "sax", "HTMLSax"
     ],
     "require": {
-        "php": ">=5.5"
+        "php": ">=7.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4"
+        "phpunit/phpunit": "~7",
+        "zendframework/zend-coding-standard": "^1.0"
     },
     "autoload": {
         "psr-4":{
@@ -21,5 +22,9 @@
         "psr-4":{
             "DigginTest\\HTMLSax\\":"tests/DigginTest/HTMLSax/"
         }
+    },
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf"
     }
 }

@@ -1,12 +1,15 @@
 <?php
 namespace DigginTest\HTMLSax;
 
+use PHPUnit\Framework\TestCase;
 
-class ProcessingInstructionsTest extends \PHPUnit_Framework_TestCase
+class ProcessingInstructionsTest extends TestCase
 {
     use BasicSetupTrait;
 
-    function testAllPi() {            // Not correct on whitespace.
+    function testAllPi()
+    {
+            // Not correct on whitespace.
         $this->listener->expects($this->once())
                         ->method('piHandler')
                         ->with($this->anything(), 'php', ' print "Hello"; ');
@@ -15,7 +18,9 @@ class ProcessingInstructionsTest extends \PHPUnit_Framework_TestCase
         // $this->listener->expectNever('endHandler');
         $this->parser->parse('<?php print "Hello"; ?>');
     }
-    function testNestedPi() {            // Not correct on whitespace.
+    function testNestedPi()
+    {
+            // Not correct on whitespace.
         $this->listener->expects($this->once())
                         ->method('piHandler')
                         ->with($this->anything(), 'php', ' print "Hello"; ');
@@ -26,13 +31,15 @@ class ProcessingInstructionsTest extends \PHPUnit_Framework_TestCase
         // $this->listener->expectNever('endHandler');
         $this->parser->parse('a<?php print "Hello"; ?>b');
     }
-    function testEscapeHandler() {
+    function testEscapeHandler()
+    {
         $this->listener->expects($this->once())
                        ->method('escapeHandler')
                        ->with($this->anything(), 'doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN"');
         $this->parser->parse('<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">');
     }
-    function testNestedEscapeHandler() {
+    function testNestedEscapeHandler()
+    {
         $this->listener->expects($this->once())
                        ->method('escapeHandler')
                        ->with($this->anything(), 'doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN"');

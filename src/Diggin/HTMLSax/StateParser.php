@@ -6,14 +6,14 @@ use Diggin\HTMLSax\Entities\Unparsed;
 use Diggin\HTMLSax\Entities\Parsed;
 use Diggin\HTMLSax\Escape\Stripper;
 
-
 /**
 * Base State Parser
 * @package Diggin_HTMLSax
 * @access protected
 * @abstract
 */
-class StateParser {
+class StateParser
+{
     /**
     * Instance of user front end class to be passed to callbacks
     * @var Diggin_HTMLSax
@@ -97,7 +97,7 @@ class StateParser {
     * @var array
     * @access private
     */
-    var $parser_options = array();
+    var $parser_options = [];
     /**
     * Diggin document being parsed
     * @var string
@@ -121,14 +121,15 @@ class StateParser {
     * @var array
     * @access private
     */
-    var $State = array();
+    var $State = [];
 
     /**
     * Constructs Diggin_HTMLSax_StateParser setting up states
     * @var Diggin_HTMLSax instance of user front end class
     * @access protected
     */
-    function __construct ($htmlsax) {
+    function __construct($htmlsax)
+    {
         $this->htmlsax = $htmlsax;
         $this->State[StateInterface::STATE_START] = new StartingState();
 
@@ -154,7 +155,8 @@ class StateParser {
     * @access protected
     * @return void
     */
-    function unscanCharacter() {
+    function unscanCharacter()
+    {
         $this->position -= 1;
     }
 
@@ -163,7 +165,8 @@ class StateParser {
     * @access protected
     * @return void
     */
-    function ignoreCharacter() {
+    function ignoreCharacter()
+    {
         $this->position += 1;
     }
 
@@ -172,7 +175,8 @@ class StateParser {
     * @access protected
     * @return mixed
     */
-    function scanCharacter() {
+    function scanCharacter()
+    {
         if ($this->position < $this->length) {
             return $this->rawtext{$this->position++};
         }
@@ -185,10 +189,11 @@ class StateParser {
     * @access protected
     * @return string
     */
-    function scanUntilString($string) {
+    function scanUntilString($string)
+    {
         $start = $this->position;
         $this->position = strpos($this->rawtext, $string, $start);
-        if ($this->position === FALSE) {
+        if ($this->position === false) {
             $this->position = $this->length;
         }
         return substr($this->rawtext, $start, $this->position - $start);
@@ -201,7 +206,8 @@ class StateParser {
      * @access protected
      * @return string
      */
-    function scanUntilCharacters($string) {
+    function scanUntilCharacters($string)
+    {
         $startpos = $this->position;
         $length = strcspn($this->rawtext, $string, $startpos);
         $this->position += $length;
@@ -214,7 +220,8 @@ class StateParser {
     * @return void
     * @abstract
     */
-    function ignoreWhitespace() {
+    function ignoreWhitespace()
+    {
         $this->position += strspn($this->rawtext, " \n\r\t", $this->position);
     }
 
@@ -225,56 +232,64 @@ class StateParser {
     * @access protected
     * @return void
     */
-    function parse($data) {
-        if ($this->parser_options['XML_OPTION_TRIM_DATA_NODES']==1) {
+    function parse($data)
+    {
+        if ($this->parser_options['XML_OPTION_TRIM_DATA_NODES'] == 1) {
             $decorator = new Trim(
                 $this->handler_object_data,
-                $this->handler_method_data);
+                $this->handler_method_data
+            );
             $this->handler_object_data = $decorator;
             $this->handler_method_data = 'trimData';
         }
-        if ($this->parser_options['XML_OPTION_CASE_FOLDING']==1) {
+        if ($this->parser_options['XML_OPTION_CASE_FOLDING'] == 1) {
             $open_decor = new CaseFolding(
                 $this->handler_object_element,
                 $this->handler_method_opening,
-                $this->handler_method_closing);
+                $this->handler_method_closing
+            );
             $this->handler_object_element = $open_decor;
-            $this->handler_method_opening ='foldOpen';
-            $this->handler_method_closing ='foldClose';
+            $this->handler_method_opening = 'foldOpen';
+            $this->handler_method_closing = 'foldClose';
         }
-        if ($this->parser_options['XML_OPTION_LINEFEED_BREAK']==1) {
+        if ($this->parser_options['XML_OPTION_LINEFEED_BREAK'] == 1) {
             $decorator = new Linefeed(
                 $this->handler_object_data,
-                $this->handler_method_data);
+                $this->handler_method_data
+            );
             $this->handler_object_data = $decorator;
             $this->handler_method_data = 'breakData';
         }
-        if ($this->parser_options['XML_OPTION_TAB_BREAK']==1) {
+        if ($this->parser_options['XML_OPTION_TAB_BREAK'] == 1) {
             $decorator = new Tab(
                 $this->handler_object_data,
-                $this->handler_method_data);
+                $this->handler_method_data
+            );
             $this->handler_object_data = $decorator;
             $this->handler_method_data = 'breakData';
         }
-        if ($this->parser_options['XML_OPTION_ENTITIES_UNPARSED']==1) {
+        if ($this->parser_options['XML_OPTION_ENTITIES_UNPARSED'] == 1) {
             $decorator = new Unparsed(
                 $this->handler_object_data,
-                $this->handler_method_data);
+                $this->handler_method_data
+            );
             $this->handler_object_data = $decorator;
             $this->handler_method_data = 'breakData';
         }
-        if ($this->parser_options['XML_OPTION_ENTITIES_PARSED']==1) {
+        if ($this->parser_options['XML_OPTION_ENTITIES_PARSED'] == 1) {
             $decorator = new Parsed(
                 $this->handler_object_data,
-                $this->handler_method_data);
+                $this->handler_method_data
+            );
             $this->handler_object_data = $decorator;
             $this->handler_method_data = 'breakData';
         }
         // Note switched on by default
-        if ($this->parser_options['XML_OPTION_STRIP_ESCAPES']==1) {
+        if ($this->parser_options['XML_OPTION_STRIP_ESCAPES'] == 1) {
             $decorator = new Stripper(
                 $this->handler_object_escape,
-                $this->handler_method_escape);
+                $this->handler_method_escape
+            );
             $this->handler_object_escape = $decorator;
             $this->handler_method_escape = 'strip';
         }
@@ -291,7 +306,8 @@ class StateParser {
     * @access protected
     * @return void
     */
-    function _parse($state = StateInterface::STATE_START) {
+    function _parse($state = StateInterface::STATE_START)
+    {
         do {
             $state = $this->State[$state]->parse($this);
         } while ($state != StateInterface::STATE_STOP &&

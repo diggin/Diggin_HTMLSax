@@ -3,16 +3,14 @@
 
 namespace Diggin\HTMLSax;
 
-
-
-
 /**
  * Breaks up data by linefeed characters, resulting in additional
  * calls to the data handler
  * @package Diggin_HTMLSax
  * @access protected
  */
-class Linefeed {
+class Linefeed
+{
     /**
      * Original handler object
      * @var object
@@ -31,7 +29,8 @@ class Linefeed {
      * @param string original handler method
      * @access protected
      */
-    function __construct($orig_obj, $orig_method) {
+    function __construct($orig_obj, $orig_method)
+    {
         $this->orig_obj = $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -41,9 +40,10 @@ class Linefeed {
      * @param string element data
      * @access protected
      */
-    function breakData($parser, $data) {
-        $data = explode("\n",$data);
-        foreach ( $data as $chunk ) {
+    function breakData($parser, $data)
+    {
+        $data = explode("\n", $data);
+        foreach ($data as $chunk) {
             $this->orig_obj->{$this->orig_method}($parser, $chunk);
         }
     }

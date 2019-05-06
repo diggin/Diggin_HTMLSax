@@ -7,15 +7,14 @@
 
 namespace Diggin\HTMLSax;
 
-
-
-
-class NullHandler {
+class NullHandler
+{
     /**
      * Generic handler method which does nothing
      * @access protected
      * @return void
      */
-    function DoNothing() {
+    function DoNothing()
+    {
     }
 }

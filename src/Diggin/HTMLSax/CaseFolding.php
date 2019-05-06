@@ -7,10 +7,8 @@
 
 namespace Diggin\HTMLSax;
 
-
-
-
-class CaseFolding {
+class CaseFolding
+{
     /**
      * Original handler object
      * @var object
@@ -36,7 +34,8 @@ class CaseFolding {
      * @param string original close handler method
      * @access protected
      */
-    function __construct($orig_obj, $orig_open_method, $orig_close_method) {
+    function __construct($orig_obj, $orig_open_method, $orig_close_method)
+    {
         $this->orig_obj = $orig_obj;
         $this->orig_open_method = $orig_open_method;
         $this->orig_close_method = $orig_close_method;
@@ -48,7 +47,8 @@ class CaseFolding {
      * @param array tag attributes
      * @access protected
      */
-    function foldOpen($parser, $tag, $attrs=array(), $empty = FALSE) {
+    function foldOpen($parser, $tag, $attrs = [], $empty = false)
+    {
         $this->orig_obj->{$this->orig_open_method}($parser, strtoupper($tag), $attrs, $empty);
     }
     /**
@@ -57,7 +57,8 @@ class CaseFolding {
      * @param string tag name
      * @access protected
      */
-    function foldClose($parser, $tag, $empty = FALSE) {
+    function foldClose($parser, $tag, $empty = false)
+    {
         $this->orig_obj->{$this->orig_close_method}($parser, strtoupper($tag), $empty);
     }
 }

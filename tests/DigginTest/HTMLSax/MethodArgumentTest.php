@@ -2,20 +2,21 @@
 namespace DigginTest\HTMLSax;
 
 use Diggin\HTMLSax\HTMLSax;
+use PHPUnit\Framework\TestCase;
 
-class MethodArgumentTest extends \PHPUnit_Framework_TestCase
+class MethodArgumentTest extends TestCase
 {
     /**
-     * @expectedException \InvalidArgumentException 
+     * @expectedException \InvalidArgumentException
      */
     public function testSetObjectMethod()
     {
         $parser = new HTMLSax();
         $parser->set_object('string');
     }
-    
+
     /**
-     * @expectedException \InvalidArgumentException 
+     * @expectedException \InvalidArgumentException
      */
     public function testSetOptionMethod()
     {
