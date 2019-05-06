@@ -7,19 +7,14 @@
 
 namespace Diggin\HTMLSax;
 
-use Diggin\HTMLSax\StateInterface;
-
 class OpeningTagState
 {
     /**
      * Handles attributes
-     * @param string attribute name
-     * @param string attribute value
-     * @return void
      * @access protected
      * @see Diggin_HTMLSax_AttributeStartState
      */
-    function parseAttributes($context)
+    function parseAttributes(StateParser $context) : array
     {
         $Attributes = [];
 
@@ -56,15 +51,13 @@ class OpeningTagState
     }
 
     /**
-     * @param Diggin_HTMLSax_StateParser subclass
-     * @return constant Diggin_HTMLSax_StateInterface::STATE_START
+     * @return int - StateInterface::STATE_START
      * @access protected
      */
-    function parse($context)
+    function parse(StateParser $context) : int
     {
         $tag = $context->scanUntilCharacters("/> \n\r\t");
         if ($tag != '') {
-            $this->attrs = [];
             $Attributes = $this->parseAttributes($context);
             $char = $context->scanCharacter();
             if ($char == '/') {

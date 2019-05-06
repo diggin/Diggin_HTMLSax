@@ -9,11 +9,9 @@ namespace Diggin\HTMLSax;
 class JaspState
 {
     /**
-     * @param Diggin_HTMLSax_StateParser subclass
-     * @return constant Diggin_HTMLSax_StateInterface::STATE_START
      * @access protected
      */
-    function parse($context)
+    function parse(StateParser $context) : int
     {
         $text = $context->scanUntilString('%>');
         if ($text != '') {

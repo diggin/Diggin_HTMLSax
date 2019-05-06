@@ -10,11 +10,10 @@ namespace Diggin\HTMLSax;
 class StartingState
 {
     /**
-     * @param Diggin_HTMLSax_StateParser subclass
-     * @return StateInterface::STATE_TAG
+     * @return int - StateInterface::STATE_TAG
      * @access protected
      */
-    function parse($context)
+    function parse(StateParser $context) : int
     {
         $data = $context->scanUntilString('<');
         if ($data != '') {

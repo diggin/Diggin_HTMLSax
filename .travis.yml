@@ -3,7 +3,6 @@ sudo: false
 language: php
 
 php:
-  - 7.1
   - 7.2
   - 7.3
   - '7.4snapshot'
@@ -12,6 +11,12 @@ install:
   - travis_retry composer install --no-interaction
   - composer info -i
 
-script:
-  - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
+jobs:
+  include:
+    - stage: Static analysis (src) with phpstan
+      php: 7.2
+      script: vendor/bin/phpstan analyse
 
+    - stage: Test
+      php: 7.2
+      script: vendor/bin/phpunit

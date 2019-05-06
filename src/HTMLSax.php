@@ -45,11 +45,10 @@ namespace Diggin\HTMLSax;
 class HTMLSax
 {
     /**
-     * Instance of concrete subclass of Diggin_HTMLSax_StateParser
-     * @var Diggin_HTMLSax_StateParser
+     * @var StateParser
      * @access private
      */
-    var $state_parser;
+    private $state_parser;
 
     /**
      * Constructs Diggin_HTMLSax selecting concrete StateParser subclass
@@ -65,9 +64,8 @@ class HTMLSax
      * $parser->set_data_handler('myDataHandler');
      * $parser->parser($xml);
      * </pre>
-     * @access public
      */
-    function __construct()
+    public function __construct()
     {
         $this->state_parser = new StateParser($this);
 

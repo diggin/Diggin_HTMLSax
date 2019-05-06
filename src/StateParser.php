@@ -16,10 +16,10 @@ class StateParser
 {
     /**
     * Instance of user front end class to be passed to callbacks
-    * @var Diggin_HTMLSax
+    * @var HTMLSax
     * @access private
     */
-    var $htmlsax;
+    public $htmlsax;
     /**
     * User defined object for handling elements
     * @var object
@@ -302,11 +302,11 @@ class StateParser
     /**
     * Performs the parsing itself, delegating calls to a specific parser
     * state
-    * @param constant state object to parse with
+    * @param int|null - constant state object to parse with
     * @access protected
     * @return void
     */
-    function _parse($state = StateInterface::STATE_START)
+    function _parse($state = StateInterface::STATE_START) : void
     {
         do {
             $state = $this->State[$state]->parse($this);
