@@ -3,10 +3,10 @@ sudo: false
 language: php
 
 php:
-  - 7.1
   - 7.2
   - 7.3
   - '7.4snapshot'
+  - nightly
 
 install:
   - travis_retry composer install --no-interaction
