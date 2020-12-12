@@ -8,7 +8,7 @@ trait BasicSetupTrait
     protected $parser;
     protected $listener;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->listener = $this->getMockBuilder(ListenerInterface::class)->getMock();
 
