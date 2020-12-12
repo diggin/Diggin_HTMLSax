@@ -5,7 +5,7 @@ language: php
 php:
   - 7.2
   - 7.3
-  - '7.4snapshot'
+  - 7.4
 
 install:
   - travis_retry composer install --no-interaction
@@ -20,3 +20,8 @@ jobs:
     - stage: Test
       php: 7.2
       script: vendor/bin/phpunit
+
+    - stage: Test_74
+      php: 7.4
+      script: vendor/bin/phpunit
+
