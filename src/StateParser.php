@@ -178,7 +178,7 @@ class StateParser
     function scanCharacter()
     {
         if ($this->position < $this->length) {
-            return $this->rawtext{$this->position++};
+            return $this->rawtext[$this->position++];
         }
     }
 
